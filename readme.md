@@ -10,5 +10,6 @@ The script creates one HTML file from each vault in the 1PUX file in selected di
 
 ## What's 1PUX?
 
-Read more about [1Password Unencrypted Export](https://support.1password.com/1pux-format/) (1PUX) format 
-allows you to export 1PUX files, so you can access your data outside of [1Password](https://1password.com/)
+[1Password Unencrypted Export](https://support.1password.com/1pux-format/) (1PUX) format 
+allows you to export 1PUX files, so you can access your data 
+outside of [1Password](https://1password.com/)
