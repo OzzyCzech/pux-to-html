@@ -7,6 +7,18 @@ $ pux2html <input file> <output directory>
 ```
 
 The script creates one HTML file from each vault in the 1PUX file in selected directory.
+## Installation
+
+```shell
+$ yarn global add pux-to-html
+
+# or 
+$ npm install -g pux-to-html
+
+# or 
+$ git clone git@github.com:OzzyCzech/pux-to-html.git
+$ yarn link pux-to-html
+```
 
 ## Example
 
