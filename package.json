@@ -2,6 +2,19 @@
   "name": "pux-to-html",
   "version": "1.0.0",
   "description": "Converts 1PUX (export from 1Password) file to HTML files",
+  "keywords": [
+    "1password",
+    "pux",
+    "html",
+    "export",
+    "security",
+    "password",
+    "convert"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OzzyCzech/pux-to-html.git"
+  },
   "main": "index.js",
   "type": "module",
   "dependencies": {
@@ -10,6 +23,7 @@
     "commander": "^10.0.1",
     "meow": "^12.0.1"
   },
+  "license": "MIT",
   "author": {
     "name": "Roman Ožana",
     "email": "roman@ozana.cz",
@@ -17,6 +31,5 @@
   },
   "bin": {
     "pux2html": "./index.js"
-  },
-  "license": "MIT"
+  }
 }
