@@ -6,13 +6,13 @@
 $ pux2html <input file> <output directory>
 ```
 
+The script creates one HTML file from each vault in the 1PUX file in selected directory.
+
 ## Example
 
 ```shell
 $ pux2html 1PasswordExport-123456789-123456-123456.1pux ~/Downloads
 ```
-
-The script creates one HTML file from each vault in the 1PUX file in selected directory.
 
 ## What's 1PUX?
 
