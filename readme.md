@@ -3,6 +3,12 @@
 `pux2html` is a console script that converts 1PUX file to HTML files:
 
 ```shell
+$ pux2html <input file> <output directory>
+```
+
+## Example
+
+```shell
 $ pux2html 1PasswordExport-123456789-123456-123456.1pux ~/Downloads
 ```
 
