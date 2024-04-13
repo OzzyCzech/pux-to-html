@@ -1,5 +1,5 @@
 export function getHtml({content, title}) {
-    return `<!doctype html>
+	return `<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,5 +12,5 @@ export function getHtml({content, title}) {
 
 <body class="container mx-auto">
 <div class="m-4">${content}</div>
-</body>`
+</body>`;
 }

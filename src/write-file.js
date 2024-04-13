@@ -10,9 +10,9 @@ import {dirname} from 'node:path';
  * @returns {Promise<*>}
  */
 export async function writeFile(file, content) {
-    if (!existsSync(dirname(file))) {
-        await mkdir(dirname(file), {recursive: true});
-    }
+	if (!existsSync(dirname(file))) {
+		await mkdir(dirname(file), {recursive: true});
+	}
 
-    return writeFileAsync(file, content);
+	return writeFileAsync(file, content);
 }
