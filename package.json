@@ -1,6 +1,6 @@
 {
 	"name": "pux-to-html",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"license": "MIT",
 	"author": "Roman Ožana <roman@ozana.cz> (https://ozana.cz)",
 	"description": "Converts 1PUX (export from 1Password) file to HTML files",
