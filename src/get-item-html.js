@@ -48,8 +48,21 @@ function getOTP(url) {
 		return `<ul>
             <li>Issues: <code>${issuer}</code></li>
             <li>Secret: <code>${secret}</code></li>
-            <li>URL: <code>${url}</code></li>
-        </ul>`;
+            <li>URL: <a href="${url}">${url}</a></li>
+            <li>
+              One-time password: <code></code>
+            
+			        <script type="module">
+			          import { TOTP } from 'https://cdn.jsdelivr.net/npm/totp-generator@1.0.0/+esm';
+			          const {otp} = await TOTP.generate("${secret}");
+								
+						    const code = document.closest('li').querySelector('code');
+								console.log(code);
+								code.textContent = otp;
+							</script>    
+            </li>
+        </ul>
+        `;
 	} catch {
 		return `<code>${url}</code>`;
 	}
