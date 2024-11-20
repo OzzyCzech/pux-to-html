@@ -10,16 +10,20 @@ function getCopyButton(value) {
            </button>`;
 }
 
-function getSection({title, fields}) {
-	return fields && fields.length > 0 ? `
-        ${title ? `<h6 class="uppercase font-semibold">${title}</h6>` : ''}
+function getSection({ title, fields }) {
+	return fields && fields.length > 0
+		? `
+        ${title ? `<h6 class="uppercase font-semibold">${title}</h6>` : ""}
         <ul class="divide-y border rounded-xl">
-            ${fields.map(getField).join('')}
-        </ul>` : '';
+            ${fields.map(getField).join("")}
+        </ul>`
+		: "";
 }
 
-function getNotes({notesPlain}) {
-	return notesPlain ? `<h6 class="font-semibold">Note</h6><pre class="text-gray-100 bg-gray-900 rounded p-4 m-2">${notesPlain}</pre>` : '';
+function getNotes({ notesPlain }) {
+	return notesPlain
+		? `<h6 class="font-semibold">Note</h6><pre class="text-gray-100 bg-gray-900 rounded p-4 m-2">${notesPlain}</pre>`
+		: "";
 }
 
 function getUrl(url, label) {
@@ -38,8 +42,8 @@ function getSecret(value) {
 function getOTP(url) {
 	try {
 		const link = new URL(url);
-		const secret = link.searchParams.get('secret');
-		const issuer = link.searchParams.get('issuer');
+		const secret = link.searchParams.get("secret");
+		const issuer = link.searchParams.get("issuer");
 
 		return `<ul>
             <li>Issues: <code>${issuer}</code></li>
@@ -51,19 +55,19 @@ function getOTP(url) {
 	}
 }
 
-function getField({value, name, title, url, label, designation}) {
+function getField({ value, name, title, url, label, designation }) {
 	if (value instanceof Object) {
-		if (value.hasOwnProperty('url') && value.url) {
+		if (value.hasOwn("url") && value.url) {
 			value = getUrl(value.url);
-		} else if (value.hasOwnProperty('string') && value.string) {
+		} else if (value.hasOwn("string") && value.string) {
 			value = `<code>${value.string}</code>`;
-		} else if (value.hasOwnProperty('totp') && value.totp) {
-			label = 'one-time password';
+		} else if (value.hasOwn("totp") && value.totp) {
+			label = "one-time password";
 			value = getOTP(value.totp);
-		} else if (value.hasOwnProperty('concealed') && value.concealed) {
+		} else if (value.hasOwn("concealed") && value.concealed) {
 			value = getSecret(value.concealed);
-		} else if (value.hasOwnProperty('file') && value.file) {
-			label = 'file';
+		} else if (value.hasOwn("file") && value.file) {
+			label = "file";
 			value = `<code>${value.file.fileName}</code>`;
 		} else {
 			value = undefined; // Unknown type
@@ -71,31 +75,43 @@ function getField({value, name, title, url, label, designation}) {
 	}
 
 	// Password or username fields
-	if (designation === 'password' || designation === 'username') {
+	if (designation === "password" || designation === "username") {
 		value = getSecret(value);
 	}
 
 	// If the field is a URL, display it as a link
 	if (url) {
-		label = 'website';
+		label = "website";
 		value = getUrl(url);
 	}
 
-	return value ? `<li class="p-3 flex flex-col flex-wrap gap-1">
+	return value
+		? `<li class="p-3 flex flex-col flex-wrap gap-1">
             <div><span class="text-gray-500">${designation || name || title || label}:</span></div>
             <div class="flex items-center gap-3">${value}</div>
-        </li>` : '';
+        </li>`
+		: "";
 }
 
-export function getItemHtml({state, details, overview, createdAt, updatedAt}) {
+export function getItemHtml({
+	state,
+	details,
+	overview,
+	createdAt,
+	updatedAt,
+}) {
 	const loginSection = {
 		fields: [
-			...details.loginFields.filter(item => item.designation === 'password' || item.designation === 'username'),
-			...overview.urls || []
-		]
+			...details.loginFields.filter(
+				(item) =>
+					item.designation === "password" || item.designation === "username",
+			),
+			...(overview.urls || []),
+		],
 	};
 
-	return state === 'active' ? `
+	return state === "active"
+		? `
         <article class="border rounded-lg p-6 print:p-4 my-4 break-inside-avoid flex flex-col gap-3">
            <h2 class="text-3xl print:text-lg font-semibold">${overview.title}</h2>
            
@@ -103,10 +119,11 @@ export function getItemHtml({state, details, overview, createdAt, updatedAt}) {
            ${getSection(loginSection)}
            
            <!-- other sections -->
-           ${details.sections.map(getSection).join('')}
+           ${details.sections.map(getSection).join("")}
            
            <!-- notes -->
            ${getNotes(details)}
         </article>
-    ` : '';
+    `
+		: "";
 }

@@ -1,4 +1,4 @@
-export function getHtml({content, title}) {
+export function getHtml({ content, title }) {
 	return `<!doctype html>
 <html lang="en">
 <head>

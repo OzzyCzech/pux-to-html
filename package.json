@@ -1,31 +1,38 @@
 {
-  "name": "pux-to-html",
-  "version": "1.0.1",
-  "license": "MIT",
-  "author": "Roman Ožana <roman@ozana.cz> (https://ozana.cz)",
-  "description": "Converts 1PUX (export from 1Password) file to HTML files",
-  "keywords": [
-    "1password",
-    "pux",
-    "html",
-    "export",
-    "security",
-    "password",
-    "convert"
-  ],
-  "repository": "git@github.com:OzzyCzech/pux-to-html.git",
-  "main": "index.js",
-  "type": "module",
-  "dependencies": {
-    "@sindresorhus/slugify": "^2.2.1",
-    "adm-zip": "^0.5.16",
-    "commander": "^12.1.0",
-    "meow": "^13.2.0"
-  },
-  "devDependencies": {
-    "xo": "^0.59.3"
-  },
-  "bin": {
-    "pux2html": "./index.js"
-  }
+	"name": "pux-to-html",
+	"version": "1.0.1",
+	"license": "MIT",
+	"author": "Roman Ožana <roman@ozana.cz> (https://ozana.cz)",
+	"description": "Converts 1PUX (export from 1Password) file to HTML files",
+	"keywords": [
+		"1password",
+		"pux",
+		"html",
+		"export",
+		"security",
+		"password",
+		"convert"
+	],
+	"repository": "git@github.com:OzzyCzech/pux-to-html.git",
+	"main": "index.js",
+	"type": "module",
+	"dependencies": {
+		"@sindresorhus/slugify": "^2.2.1",
+		"adm-zip": "^0.5.16",
+		"commander": "^12.1.0",
+		"meow": "^13.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"np": "^10.0.7"
+	},
+	"scripts": {
+		"release": "np",
+		"prepare": "npm run build",
+		"format": "biome format --write",
+		"lint": "biome lint"
+	},
+	"bin": {
+		"pux2html": "./index.js"
+	}
 }

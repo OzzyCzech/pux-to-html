@@ -1,6 +1,6 @@
-import {mkdir, writeFile as writeFileAsync} from 'node:fs/promises';
-import {existsSync} from 'node:fs';
-import {dirname} from 'node:path';
+import { existsSync } from "node:fs";
+import { mkdir, writeFile as writeFileAsync } from "node:fs/promises";
+import { dirname } from "node:path";
 
 /**
  * Write content to the file and create directory if not exists
@@ -11,7 +11,7 @@ import {dirname} from 'node:path';
  */
 export async function writeFile(file, content) {
 	if (!existsSync(dirname(file))) {
-		await mkdir(dirname(file), {recursive: true});
+		await mkdir(dirname(file), { recursive: true });
 	}
 
 	return writeFileAsync(file, content);

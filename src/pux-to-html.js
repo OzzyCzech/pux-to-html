@@ -1,16 +1,16 @@
-import slugify from '@sindresorhus/slugify';
-import {getVaultHtml} from './get-vault-html.js';
-import {writeFile} from './write-file.js';
-import {join} from 'node:path';
-import AdmZip from 'adm-zip';
+import { join } from "node:path";
+import slugify from "@sindresorhus/slugify";
+import AdmZip from "adm-zip";
+import { getVaultHtml } from "./get-vault-html.js";
+import { writeFile } from "./write-file.js";
 
 // Import templates
 
 export async function puxToHtml(input, output) {
-	const pux = new AdmZip(input);
+	const pux = new AdmZip(input, {});
 
-	const attributes = JSON.parse(pux.readAsText('export.attributes'));
-	const data = JSON.parse(pux.readAsText('export.data'));
+	const attributes = JSON.parse(pux.readAsText("export.attributes", "utf8"));
+	const data = JSON.parse(pux.readAsText("export.data", "utf8"));
 
 	for (const account of data.accounts) {
 		// Get directory name
@@ -18,7 +18,7 @@ export async function puxToHtml(input, output) {
 
 		// Iterate over vaults
 		for (const vault of account.vaults) {
-			const fileName = slugify(vault.attrs.name) + '.html';
+			const fileName = `${slugify(vault.attrs.name)}.html`;
 			const html = getVaultHtml(vault);
 
 			// Write HTML files
