@@ -29,7 +29,8 @@
 	"scripts": {
 		"release": "np",
 		"format": "biome format --write",
-		"lint": "biome lint"
+		"lint": "biome lint",
+		"test": "biome ci"
 	},
 	"bin": {
 		"pux2html": "./index.js"
