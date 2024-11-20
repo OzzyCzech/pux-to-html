@@ -57,16 +57,17 @@ function getOTP(url) {
 
 function getField({ value, name, title, url, label, designation }) {
 	if (value instanceof Object) {
-		if (value.hasOwn("url") && value.url) {
+		const { url, string, totp, concealed, file } = value;
+		if (url) {
 			value = getUrl(value.url);
-		} else if (value.hasOwn("string") && value.string) {
+		} else if (string) {
 			value = `<code>${value.string}</code>`;
-		} else if (value.hasOwn("totp") && value.totp) {
+		} else if (totp) {
 			label = "one-time password";
 			value = getOTP(value.totp);
-		} else if (value.hasOwn("concealed") && value.concealed) {
+		} else if (concealed) {
 			value = getSecret(value.concealed);
-		} else if (value.hasOwn("file") && value.file) {
+		} else if (file) {
 			label = "file";
 			value = `<code>${value.file.fileName}</code>`;
 		} else {
