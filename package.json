@@ -28,7 +28,6 @@
 	},
 	"scripts": {
 		"release": "np",
-		"prepare": "npm run build",
 		"format": "biome format --write",
 		"lint": "biome lint"
 	},
