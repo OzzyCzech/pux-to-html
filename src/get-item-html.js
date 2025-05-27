@@ -2,27 +2,31 @@ function getCopyButton(value) {
 	return `<button 
                 type="button"
                 title="Copy to clipboard"
-                class="bg-gray-200 text-gray-900 hover:bg-gray-800 hover:text-white p-2 rounded-full print:hidden"
-                onclick=navigator.clipboard.writeText(${JSON.stringify(value)})><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
-                <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
-            </svg>
+                class="bg-gray-200 text-gray-900 hover:bg-gray-800 hover:text-white p-2 rounded-full print:hidden cursor-pointer"
+                onclick=navigator.clipboard.writeText(${JSON.stringify(value)})>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 lucide lucide-clipboard-copy-icon lucide-clipboard-copy">
+                  <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+	                <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                  <path d="M16 4h2a2 2 0 0 1 2 2v4"/>
+                  <path d="M21 14H11"/>
+                  <path d="m15 10-4 4 4 4"/>
+                </svg>
            </button>`;
 }
 
-function getSection({ title, fields }) {
+function getSection({title, fields}) {
 	return fields && fields.length > 0
 		? `
         ${title ? `<h6 class="uppercase font-semibold">${title}</h6>` : ""}
-        <ul class="divide-y border rounded-xl">
+        <ul class="divide-y divide-gray-300 border border-gray-300 rounded-xl">
             ${fields.map(getField).join("")}
         </ul>`
 		: "";
 }
 
-function getNotes({ notesPlain }) {
+function getNotes({notesPlain}) {
 	return notesPlain
-		? `<h6 class="font-semibold">Note</h6><pre class="text-gray-100 bg-gray-900 rounded p-4 m-2">${notesPlain}</pre>`
+		? `<h6 class="font-semibold">Note</h6><pre class="text-gray-900 bg-gray-200 rounded p-4 m-2">${notesPlain}</pre>`
 		: "";
 }
 
@@ -40,37 +44,37 @@ function getSecret(value) {
 }
 
 function getOTP(url) {
-	try {
-		const link = new URL(url);
-		const secret = link.searchParams.get("secret");
-		const issuer = link.searchParams.get("issuer");
+	const link = new URL(url);
+	const secret = link.searchParams.get("secret");
+	const issuer = link.searchParams.get("issuer");
 
-		return `<ul>
-            <li>Issues: <code>${issuer}</code></li>
-            <li>Secret: <code>${secret}</code></li>
-            <li>URL: <a href="${url}">${url}</a></li>
-            <li>
-              One-time password: <code></code>
-            
-			        <script type="module">
-			          import { TOTP } from 'https://cdn.jsdelivr.net/npm/totp-generator@1.0.0/+esm';
-			          const {otp} = await TOTP.generate("${secret}");
-								
-						    const code = document.closest('li').querySelector('code');
-								console.log(code);
-								code.textContent = otp;
-							</script>    
-            </li>
-        </ul>
-        `;
-	} catch {
-		return `<code>${url}</code>`;
-	}
+	return `<table class="min-w-full border border-gray-300 rounded-lg overflow-hidden mb-2">
+        <tbody>
+          <tr class="bg-gray-50">
+            <th class="whitespace-nowrap p-2 text-left font-semibold text-gray-700 text-right w-64">Issuer:</th>
+            <td class="p-2"><code>${issuer || "-"}</code></td>
+          </tr>
+          <tr>
+            <th class="whitespace-nowrap p-2 font-semibold text-gray-700 text-right">Secret:</th>
+            <td class="p-2"><code class="bg-gray-100 text-gray-900 rounded px-1">${secret || "-"}</code></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <th class="whitespace-nowrap p-2 font-semibold text-gray-700 text-right truncate">URL:</th>
+            <td class="p-2 text-wrap">${getCopyButton(url)}</td>
+          </tr>
+          <tr>
+            <th class="whitespace-nowrap p-2 font-semibold text-gray-700 text-right">OTP code:</th>
+            <td class="p-2">
+              <code data-secret="${secret}" class="text-lg font-mono bg-gray-900 text-green-400 px-2 py-1 rounded"></code>
+            </td>
+          </tr>
+        </tbody>
+      </table>`;
 }
 
-function getField({ value, name, title, url, label, designation }) {
+function getField({value, name, title, url, label, designation}) {
 	if (value instanceof Object) {
-		const { url, string, totp, concealed, file } = value;
+		const {url, string, totp, concealed, file} = value;
 		if (url) {
 			value = getUrl(value.url);
 		} else if (string) {
@@ -108,12 +112,12 @@ function getField({ value, name, title, url, label, designation }) {
 }
 
 export function getItemHtml({
-	state,
-	details,
-	overview,
-	createdAt,
-	updatedAt,
-}) {
+	                            state,
+	                            details,
+	                            overview,
+	                            createdAt,
+	                            updatedAt,
+                            }) {
 	const loginSection = {
 		fields: [
 			...details.loginFields.filter(
@@ -126,7 +130,7 @@ export function getItemHtml({
 
 	return state === "active"
 		? `
-        <article class="border rounded-lg p-6 print:p-4 my-4 break-inside-avoid flex flex-col gap-3">
+        <article class="border border-gray-300 rounded-lg p-6 print:p-4 my-4 break-inside-avoid flex flex-col gap-3">
            <h2 class="text-3xl print:text-lg font-semibold">${overview.title}</h2>
            
            <!-- login section -->
