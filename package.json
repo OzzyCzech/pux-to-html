@@ -19,12 +19,12 @@
 	"dependencies": {
 		"@sindresorhus/slugify": "^2.2.1",
 		"adm-zip": "^0.5.16",
-		"commander": "^12.1.0",
+		"commander": "^14.0.0",
 		"meow": "^13.2.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"np": "^10.0.7"
+		"np": "^10.2.0"
 	},
 	"scripts": {
 		"release": "np",
