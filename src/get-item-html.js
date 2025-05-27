@@ -14,7 +14,7 @@ function getCopyButton(value) {
            </button>`;
 }
 
-function getSection({title, fields}) {
+function getSection({ title, fields }) {
 	return fields && fields.length > 0
 		? `
         ${title ? `<h6 class="uppercase font-semibold">${title}</h6>` : ""}
@@ -24,7 +24,7 @@ function getSection({title, fields}) {
 		: "";
 }
 
-function getNotes({notesPlain}) {
+function getNotes({ notesPlain }) {
 	return notesPlain
 		? `<h6 class="font-semibold">Note</h6><pre class="text-gray-900 bg-gray-200 rounded p-4 m-2">${notesPlain}</pre>`
 		: "";
@@ -72,9 +72,9 @@ function getOTP(url) {
       </table>`;
 }
 
-function getField({value, name, title, url, label, designation}) {
+function getField({ value, name, title, url, label, designation }) {
 	if (value instanceof Object) {
-		const {url, string, totp, concealed, file} = value;
+		const { url, string, totp, concealed, file } = value;
 		if (url) {
 			value = getUrl(value.url);
 		} else if (string) {
@@ -112,12 +112,12 @@ function getField({value, name, title, url, label, designation}) {
 }
 
 export function getItemHtml({
-	                            state,
-	                            details,
-	                            overview,
-	                            createdAt,
-	                            updatedAt,
-                            }) {
+	state,
+	details,
+	overview,
+	createdAt,
+	updatedAt,
+}) {
 	const loginSection = {
 		fields: [
 			...details.loginFields.filter(
