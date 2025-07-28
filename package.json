@@ -23,13 +23,13 @@
 		"meow": "^13.2.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "2.1.2",
 		"np": "^10.2.0"
 	},
 	"scripts": {
 		"release": "np",
-		"format": "biome format --write",
-		"lint": "biome lint",
+		"format": "biome check --write .",
+		"format:check": "biome check .",
 		"test": "biome ci"
 	},
 	"bin": {

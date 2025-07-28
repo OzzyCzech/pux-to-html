@@ -9,7 +9,7 @@ import { writeFile } from "./write-file.js";
 export async function puxToHtml(input, output) {
 	const pux = new AdmZip(input, {});
 
-	const attributes = JSON.parse(pux.readAsText("export.attributes", "utf8"));
+	const _attributes = JSON.parse(pux.readAsText("export.attributes", "utf8"));
 	const data = JSON.parse(pux.readAsText("export.data", "utf8"));
 
 	for (const account of data.accounts) {

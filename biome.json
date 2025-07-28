@@ -1,14 +1,12 @@
 {
-	"$schema": "https://biomejs.dev/schemas/latest/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
 		"useIgnoreFile": false
 	},
-	"organizeImports": {
-		"enabled": true
-	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"files": {
-		"include": ["src/**/*.*", "test/**/*.*", "package.json"]
+		"includes": ["**/src/**/*.*", "**/test/**/*.*", "**/package.json"]
 	}
 }

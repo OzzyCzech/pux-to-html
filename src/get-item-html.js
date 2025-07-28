@@ -30,7 +30,7 @@ function getNotes({ notesPlain }) {
 		: "";
 }
 
-function getUrl(url, label) {
+function getUrl(url, _label) {
 	try {
 		const link = new URL(url);
 		return `<a href="${url}" target="_blank" class="hover:underline hover:text-sky-700" rel="noopener noreferrer">${link.hostname}</a>`;
@@ -115,8 +115,8 @@ export function getItemHtml({
 	state,
 	details,
 	overview,
-	createdAt,
-	updatedAt,
+	_createdAt,
+	_updatedAt,
 }) {
 	const loginSection = {
 		fields: [
