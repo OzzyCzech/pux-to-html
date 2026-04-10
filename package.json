@@ -13,7 +13,13 @@
 		"password",
 		"convert"
 	],
-	"repository": "git@github.com:OzzyCzech/pux-to-html.git",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/OzzyCzech/pux-to-html.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"main": "index.js",
 	"type": "module",
 	"dependencies": {
