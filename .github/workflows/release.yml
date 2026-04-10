@@ -27,8 +27,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: npm publish --provenance --access public --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Generate changelog
         id: changelog
         run: |
