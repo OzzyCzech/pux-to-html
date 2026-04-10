@@ -18,13 +18,13 @@
 	"type": "module",
 	"dependencies": {
 		"@sindresorhus/slugify": "^3.0.0",
-		"adm-zip": "^0.5.16",
-		"commander": "^14.0.2",
-		"meow": "^14.0.0"
+		"adm-zip": "^0.5.17",
+		"commander": "^14.0.3",
+		"meow": "^14.1.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.6",
-		"np": "^10.2.0"
+		"np": "^11.0.3"
 	},
 	"scripts": {
 		"release": "np",
