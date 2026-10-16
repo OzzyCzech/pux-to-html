@@ -19,7 +19,7 @@ npm install -g pux-to-html
 ```
 
 ```shell
-yarn global add pux-to-html
+pnpm add -g pux-to-html
 ```
 
 ## Usage

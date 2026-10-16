@@ -22,6 +22,7 @@
 	},
 	"main": "index.js",
 	"type": "module",
+	"packageManager": "pnpm@12.11.2",
 	"dependencies": {
 		"@sindresorhus/slugify": "^3.0.0",
 		"adm-zip": "^0.5.17",
